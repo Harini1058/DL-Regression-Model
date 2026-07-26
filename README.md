@@ -150,6 +150,12 @@ plt.plot(x,predicted_y, 'r')
 
 <img width="621" height="480" alt="image" src="https://github.com/user-attachments/assets/637fed11-1958-42fc-84f6-7b36e2b47325" />
 
+### Output
+
+<img width="610" height="507" alt="Screenshot 2026-07-26 205121" src="https://github.com/user-attachments/assets/c4710327-e80f-48c5-9dde-bc3a7eaef617" />
+
+<img width="621" height="480" alt="Screenshot 2026-07-26 205455" src="https://github.com/user-attachments/assets/a42260c8-e122-468f-8525-ef1153e77a79" />
+
 ### New Sample Data Prediction
 
 <img width="930" height="281" alt="image" src="https://github.com/user-attachments/assets/b57973fc-7099-4a03-8af9-b021e694551c" />
