@@ -40,32 +40,121 @@ Use the trained model to predict  for a new input value .
 
 ## PROGRAM
 
-### Name:
+### Name: HARINI G
 
-### Register Number:
+### Register Number: 212225230091
 
 ```python
+
+import torch
+
+import torch.nn as nn
+
+import numpy as np 
+
+import matplotlib.pyplot as plt
+
+X = torch.linspace(1,50,50).reshape(-1,1)
+
+torch.manual_seed(71)
+
+e = torch.randint(-8,9,(50,1),dtype=torch.float)
+
+e
+
+
+<img width="277" height="881" alt="image" src="https://github.com/user-attachments/assets/cbd56b90-f8c2-43dc-8023-a67fc0586dff" />
+
+y = 2*X + 1 + e
+
+y
+
+
+<img width="217" height="817" alt="image" src="https://github.com/user-attachments/assets/aa3c542b-98fa-4635-9ab0-52f1c014afb1" />
+
+plt.scatter(X, y)
+
+plt.ylabel('y')
+
+plt.xlabel('x');
+
+<img width="703" height="497" alt="image" src="https://github.com/user-attachments/assets/fe6e659f-bce0-42ec-b2bd-effc23bf2d35" />
+
 class Model(nn.Module):
+
     def __init__(self, in_features, out_features):
+
         super().__init__()
-        #Include your code here
+    
+        self.linear = nn.Linear(in_features, out_features)   
 
 
+    def forward(self, x):
+ 
+        y_pred = self.linear(x)
 
-# Initialize the Model, Loss Function, and Optimizer
+        return y_pred
 
-```
+torch.manual_seed(59)
 
-### Dataset Information
-Include screenshot of the generated data
+model = Model(1, 1)
 
-### OUTPUT
-Training Loss Vs Iteration Plot
-Best Fit line plot
-Include your plot here
+criterion = nn.MSELoss()
+
+optimizer = torch.optim.SGD(model.parameters(), lr = 0.001)
+
+epochs = 50
+
+losses = []
+
+for i in range(epochs):
+
+    i = i +1
+
+    y_pred = model.forward(X)
+    
+    loss = criterion(y_pred, y)
+
+    losses.append(loss.item())
+
+    print(f'epoch: {i}  loss: {loss.item()}  weight: {model.linear.weight.item()} bias: {model.linear.bias.item()}') 
+
+    optimizer.zero_grad()
+    
+    loss.backward()
+
+    optimizer.step()
+
+
+<img width="675" height="817" alt="image" src="https://github.com/user-attachments/assets/67181044-6ca3-477e-88fb-45b2c6253acf" />
+
+plt.plot(range(epochs), losses)
+
+plt.ylabel('MSE Loss')
+
+plt.xlabel('Epoch')
+
+plt.show()
+
+<img width="610" height="507" alt="image" src="https://github.com/user-attachments/assets/9057bbee-2629-453c-8323-9f90703c0232" />
+
+x = np.linspace(0.0,50.0,50)
+
+current_weight = model.linear.weight.item()
+
+current_bias = model.linear.bias.item()
+
+predicted_y = current_weight * x + current_bias
+
+plt.scatter(X, y)
+
+plt.plot(x,predicted_y, 'r')
+
+<img width="621" height="480" alt="image" src="https://github.com/user-attachments/assets/637fed11-1958-42fc-84f6-7b36e2b47325" />
 
 ### New Sample Data Prediction
-Include your sample input and output here
+
+<img width="930" height="281" alt="image" src="https://github.com/user-attachments/assets/b57973fc-7099-4a03-8af9-b021e694551c" />
 
 ## RESULT
 Thus, a neural network regression model was successfully developed and trained using PyTorch.
